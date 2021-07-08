@@ -1,0 +1,4 @@
+<div (click)="selectPlayer(data, player, data?.src)"
+   class="{{(data?.selected && data.player === player)?'square-wrapper selected':'square-wrapper'}}">
+   <img src={{data?.src}} />
+</div>

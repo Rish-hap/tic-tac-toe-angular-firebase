@@ -1,0 +1,46 @@
+.square-wrapper {
+  border: none;
+  background: #232323;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: inherit;
+  transition: transform 250ms ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square-disabled:active {
+  transform: none !important;
+}
+
+.square-wrapper:active {
+  transform: translateY(3px);
+}
+
+.square-wrapper img {
+  height: 4rem;
+  opacity: 0;
+  animation: fadeIn 350ms ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .square-wrapper {
+    height: 50px;
+    width: 50px;
+  }
+
+  .square-wrapper img {
+    height: 2rem;
+  }
+}

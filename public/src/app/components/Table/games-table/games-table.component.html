@@ -1,0 +1,16 @@
+<div class="table-wrapper">
+<table class="rtable">
+   <app-table-header  [search]="search_callback" ></app-table-header>
+    <tbody>
+     <app-table-row
+     *ngFor="let data of paginated_data; let i = index"
+     [data]="data"
+     >
+     </app-table-row>
+    </tbody>
+  </table>
+
+  <app-pagination [paginate_data] = "paginate_data" [data]="gamesInfo" class="u-margin-top"></app-pagination>
+  
+</div>
+

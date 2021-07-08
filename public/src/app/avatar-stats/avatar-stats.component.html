@@ -1,0 +1,24 @@
+<div class="avatar-stats-heading">
+    <span>
+        <h1>Avatar</h1>
+    </span>
+    <span>
+        <h1>Won</h1>
+    </span>
+    <span>
+        <h1>Loss</h1>
+    </span>
+</div>
+<div class="avatar-stats-main-div">
+    <div *ngFor="let value of avatars; let i = index" class="avatar-stats-row">
+        <span class="image-container child-1">
+            <img src={{value.src}} />
+        </span>
+        <span class="child-2">
+            <span>{{value.wins}}</span>
+        </span>
+        <span class="child-3">
+            <span>{{value.loss}}</span>
+        </span>
+    </div>
+</div>

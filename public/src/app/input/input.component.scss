@@ -1,0 +1,25 @@
+.input-name {
+    font-size: 32px;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #727272;
+    color: #55d6aa;
+    padding-bottom: 5px;
+    animation: moveFromBottom 350ms ease forwards;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+    & {
+        h1 {
+            font-size: 36px;
+            color: #727272;
+            margin-bottom: 1rem;
+            animation: moveFromBottom 350ms ease forwards;
+        }
+    }
+}

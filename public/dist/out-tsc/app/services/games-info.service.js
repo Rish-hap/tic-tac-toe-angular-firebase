@@ -1,0 +1,76 @@
+import { __decorate } from "tslib";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import axios from 'axios';
+let GamesInfoService = class GamesInfoService {
+    constructor() {
+        this.gamesInfo = [];
+    }
+    get_games_info(data) {
+        console.log(data, "someData in get_games_info");
+        return new Observable((observer) => {
+            if (this.gamesInfo.length === 0) {
+                (async () => {
+                    let data = await axios.get(`http://localhost:5001/diablo2343/us-central1/v1/v1/games/allGames`, { headers: {
+                            auth_header: 'no'
+                        } })
+                        .then((res) => {
+                        return res.data;
+                    })
+                        .catch((err) => {
+                        return {
+                            success: false,
+                            message: "Unable to fetch Games"
+                        };
+                    });
+                    observer.next(data);
+                })();
+            }
+            else {
+                observer.next({
+                    data: [...this.gamesInfo]
+                });
+            }
+        });
+    }
+    async set_games_info_backend(games) {
+        let data = {};
+        try {
+            data = await axios.post(`http://localhost:5001/diablo2343/us-central1/v1/v1/games/addGame`, {
+                games: games
+            })
+                .then((res) => {
+                return res.data;
+            })
+                .catch((err) => {
+                return {
+                    success: false,
+                    message: "Unable to fetch avatars"
+                };
+            });
+        }
+        catch (error) {
+            data = {
+                success: false,
+                message: "Unable to fetch avatars"
+            };
+        }
+        return data;
+    }
+    getStaticGames() {
+        return [...this.gamesInfo];
+    }
+    setGamesInfo(data) {
+        let games = this.getStaticGames();
+        games.push(data);
+        this.gamesInfo = [...games];
+        this.set_games_info_backend(data);
+    }
+};
+GamesInfoService = __decorate([
+    Injectable({
+        providedIn: 'root'
+    })
+], GamesInfoService);
+export { GamesInfoService };
+//# sourceMappingURL=games-info.service.js.map

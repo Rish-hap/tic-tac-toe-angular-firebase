@@ -1,0 +1,46 @@
+<div class="choose-player-main-div u-align-left">
+    <div id="1">
+        <h1 class="heading-h1">Player 1</h1>
+        <div class="app-input-wrap">
+            <app-input [player]="1" [changePlayerInfo]="changePlayerInfo" class="choose-input"></app-input>
+        </div>
+        <h1>Avatar</h1>
+        <div class="choose-player-wrapper">
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'1'"
+                [data]="avatars[0]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'1'"
+                [data]="avatars[1]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'1'"
+                [data]="avatars[2]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'1'"
+                [data]="avatars[3]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'1'"
+                [data]="avatars[4]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'1'"
+                [data]="avatars[5]"></app-player>
+        </div>
+    </div>
+    <div id="some-id" class="u-margin-left-40">
+        <h1 class="heading-h1">Player 2</h1>
+        <div class="app-input-wrap">
+            <app-input [player]="2" [changePlayerInfo]="changePlayerInfo" class="choose-input"></app-input>
+        </div>
+        <h1>Avatar</h1>
+        <div class="choose-player-wrapper ">
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'2'"
+                [data]="avatars[3]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'2'"
+                [data]="avatars[4]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'2'"
+                [data]="avatars[5]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'2'"
+                [data]="avatars[0]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'2'"
+                [data]="avatars[1]"></app-player>
+            <app-player [selectPlayer]="selectPlayer" [changePlayerInfo]="changePlayerInfo" [player]="'2'"
+                [data]="avatars[2]"></app-player>
+        </div>
+
+    </div>
+</div>
+<button class="btn-class" (click)="startGame()">Start Game</button>

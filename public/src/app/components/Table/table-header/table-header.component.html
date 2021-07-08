@@ -1,0 +1,91 @@
+<thead>
+    <tr>
+      <th rowspan="1" colspan="2">Avatars</th>
+      <th rowspan="1" colspan="2">Names</th>
+      <th rowspan="1" colspan="2">Moves</th>
+      <th rowspan="1" colspan="2">Time</th>
+      <th rowspan="2" colspan="1">Won</th>
+      <th rowspan="2" colspan="1"><div>
+          <span>
+             Date
+          </span>
+          <!-- <span class="filter-icon">
+            <div class="dropdown-area">
+              
+            </div>
+            <i (click)="filterClick()" class="fas fa-cog "></i>
+            
+         </span> -->
+      </div>
+    </th>
+      </tr>
+      <tr>
+          <th class="width-50" rowspan="2">
+            <div class="header-data-wrapper">
+              <span class="span1">
+                Player 1
+              </span>
+              <span class="span2">
+                <select [ngModel]="avatar1" (ngModelChange)="avatarChange({term:$event, type:'avatar1'})"  class="search-input width-100" >
+                     <option  
+                     *ngFor="let data of avatars; let i = index"
+                     [value]="data.src">
+                     {{data.name}}
+                     </option>
+                     <option value="">
+                       All
+                     </option>
+                </select>
+              </span>
+            </div>
+          </th>
+          <th class="width-50" rowspan="2">
+            <div class="header-data-wrapper">
+              <span class="span1">
+                Player 2
+              </span>
+              <span class="span2">
+                <select [ngModel]="avatar2" (ngModelChange)="avatarChange({term:$event, type:'avatar2'})"  class="search-input width-100" >
+                     <option  
+                     *ngFor="let data of avatars; let i = index"
+                     [value]="data.src">
+                     {{data.name}}
+                     </option>
+                     <option value="">
+                       All
+                     </option>
+                </select>
+              </span>
+            </div>
+          </th>
+
+          <th class="width-50" rowspan="2">
+            <div class="header-data-wrapper">
+              <span class="span1">
+                Player 1
+              </span>
+              <span class="span2">
+                <input [ngModel]="player1" (ngModelChange)="playerNameChange({term:$event, type:'player1'})"  class="search-input" type="text" />
+                <i (click)="playerNameChange({term:'', type:'player1'})" *ngIf='player1!==""' class="clearable__clear">&times;</i>
+              </span>
+            </div>
+          </th>
+          <th class="width-50" rowspan="2">
+            <div class="header-data-wrapper">
+              <span class="span1">
+                Player 2
+              </span>
+              <span class="span2">
+                <input [ngModel]="player2" (ngModelChange)="playerNameChange({term:$event, type:'player2'})"  class="search-input" type="text" />
+                <i (click)="playerNameChange({term:'', type:'player2'})" *ngIf='player2!==""' class="clearable__clear">&times;</i>
+              </span>
+            </div>
+          </th>
+
+          <th class="width-50" rowspan="2">Player 1</th>
+          <th class="width-50" rowspan="2">Player 2</th>
+
+          <th class="width-50" rowspan="2">Player 1</th>
+          <th class="width-50" rowspan="2">Player 2</th>
+    </tr>
+</thead>

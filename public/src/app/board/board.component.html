@@ -1,0 +1,47 @@
+<div class="app-wrapper">
+
+  <h1 *ngIf="coinFlip; else FlipCoin">
+
+    <h1 *ngIf="winner; else elseBlock">
+      Player <img *ngIf="winner==='O'; else Xwinner" src={{player1}} />
+      <ng-template #Xwinner>
+        <img src={{player2}} />
+      </ng-template> won the game!
+    </h1>
+
+    <ng-template #elseBlock>
+
+      <h1 *ngIf="(moves!==9) && (!winner)">It's <img *ngIf="xIsNext; else Xturn" src={{player1}} />
+        <ng-template #Xturn>
+          <img src={{player2}} />
+        </ng-template> turn!
+      </h1>
+    </ng-template>
+
+  </h1>
+
+
+  <ng-template #FlipCoin>
+    <h1>Click <img class="curspr-pointer" (click)="getTurn()"
+        src="https://res.cloudinary.com/rish/image/upload/v1623997828/coin_fyuryn.svg" /> to decide turn!</h1>
+  </ng-template>
+
+
+  <h1 *ngIf="moves===9 && !winner">
+    Match Drawn!
+  </h1>
+
+
+  <main>
+    <app-square *ngFor="let value of squares; let i = index" (click)="makeMove(i)" [valuefromParent]="value"
+      [player1]="player1" [player2]="player2">
+    </app-square>
+
+  </main>
+  <button (click)="newGame()">Start new Game</button>
+
+  <h1 class="u-margin-small" *ngIf="winner || moves===9">
+    Game Time: {{ timing | timeInSecPipe }} seconds
+  </h1>
+
+</div>

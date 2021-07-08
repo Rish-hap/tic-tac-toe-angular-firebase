@@ -1,0 +1,16 @@
+<tr>
+    <td  class="td-image width-50">
+        <img src={{data?.player1.avatar}} />
+    </td>
+    <td class="td-image width-50">
+         <img src={{data?.player2.avatar}}  />
+    </td>
+    <td class="width-50">{{data?.player1.name}}</td>
+    <td class="width-50">{{data?.player2.name}}</td>
+    <td class="width-50">{{data?.player1.moves}}</td>
+    <td class="width-50">{{data?.player2.moves}}</td>
+    <td class="width-50">{{data?.player1.time.toFixed(2)}}s</td>
+    <td class="width-50">{{data?.player2.time.toFixed(2)}}s</td>
+    <td class="width-50">{{data?.won==="None"?"None":data.won==="player1"?data.player1.name:data.player2.name}}</td>
+    <td class="width-50">{{ data?.Time | datePipe }}</td>
+  </tr>

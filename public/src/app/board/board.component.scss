@@ -1,0 +1,69 @@
+main {
+    display: grid;
+    grid-template-columns: 140px 140px 140px;
+    grid-gap: 0px;
+    box-shadow: 0 22px 43px 0 rgb(0 0 0 / 30%);
+    background: #000;
+    border: 40px solid #000;
+    border-radius: 8px;
+    animation: moveFromBottom 350ms ease forwards;
+}
+.app-wrapper > button {
+    background: transparent;
+    font-size: 28px;
+    color: #737373;
+    appearance: none;
+    outline: none;
+    border: none;
+    font-family: "Source Sans Pro", sans-serif;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.app-wrapper h1 {
+    background: transparent;
+    font-size: 36px;
+    color: #737373;
+    appearance: none;
+    outline: none;
+    border: none;
+    width: inherit;
+    font-family: "Source Sans Pro", sans-serif;
+    margin-top: 15px;
+    // animation: moveFromTop 350ms ease forwards;
+}
+
+.app-wrapper > h1 img {
+    height: 60px;
+    margin: 0px 8px;
+    position: relative;
+    top: 9px;
+    opacity: 0;
+    animation: fadeIn 350ms ease forwards;
+}
+
+@media (max-width: 767px) {
+    main {
+        grid-template-columns: 80px 80px 80px;
+        grid-gap: 0px;
+        box-shadow: 0 22px 43px 0 rgb(0 0 0 / 30%);
+        background: #000;
+        border: 20px solid #000;
+        border-radius: 8px;
+        justify-content: center;
+    }
+
+    .app-wrapper > h1 img {
+        height: 40px;
+    }
+
+    .app-wrapper > h1 {
+        font-size: 20px;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

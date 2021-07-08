@@ -1,0 +1,6 @@
+<div class="pagination">
+  <span [ngClass]="params.active === 1?'disable':''" (click)="change_active(false,'prev')"> &laquo; </span>
+  <span (click)="change_active(x+1,'')" *ngFor="let i of [].constructor(params.pages), let x= index"
+    [ngClass]="params.active === x+1?'active':''">{{x+1}}</span>
+  <span [ngClass]="params.active === params.pages?'disable':''" (click)="change_active(false,'next')"> &raquo; </span>
+</div>

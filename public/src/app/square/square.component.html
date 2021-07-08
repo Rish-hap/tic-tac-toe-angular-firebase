@@ -1,0 +1,13 @@
+<div class="square-wrapper square-disabled">
+
+    <div *ngIf="valuefromParent; else message">
+        <img *ngIf="valuefromParent==='O'; else X" src={{player1}} />
+        <ng-template #X>
+            <img #X src={{player2}} />
+        </ng-template>
+    </div>
+
+    <ng-template #message>
+
+    </ng-template>
+</div>

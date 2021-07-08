@@ -1,0 +1,47 @@
+.avatar-stats-main-div {
+    display: block;
+    box-shadow: 0 22px 43px 0 rgb(0 0 0 / 30%);
+    background: #000;
+    border: 40px solid #000;
+    border-radius: 8px;
+    animation: moveFromBottom 350ms ease forwards;
+    min-width: 40rem;
+}
+
+.avatar-stats-heading {
+    display: flex;
+    animation: moveFromTop 350ms ease forwards;
+    & {
+        span {
+            flex: 1 1 30%;
+            font-size: 25px;
+            color: #737373;
+        }
+    }
+}
+
+.avatar-stats-row {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    // background: #55D6AA;
+    min-width: 40rem;
+    margin: 1rem auto;
+
+    & {
+        .image-container > img {
+            height: 5rem;
+        }
+        span {
+            flex: 1 1 30%;
+            font-size: 36px;
+            color: #737373;
+        }
+    }
+}
+
+.avatar-stats-row > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
