@@ -20,6 +20,7 @@ const post = async (req: any, res: any) => {
 }
 
 const get = async (req: any, res: any) => {
+  console.log("Inside getAllAvatars==========>>")
   let avatars_stats = await get_avatars()
   interface return_obj {
     message: string,

@@ -1,0 +1,17 @@
+<div class="app-wrapper">
+    <main style="width: 100%;display: block;">
+        <h1 class="signin-h1">Sign In</h1>
+        <div class="signin-wrap">
+            <div class="app-input-wrap signin-input-wrap">
+                <app-input [changePlayerInfo]="onChange" [placeholder]="'Name'" [type]="'name'" [version]="true"
+                    class="choose-input width-100"></app-input>
+            </div>
+
+            <div class="app-input-wrap signin-input-wrap">
+                <app-input [changePlayerInfo]="onChange" [placeholder]="'Password'" [type]="'password'" [version]="true"
+                    class="choose-input width-100"></app-input>
+            </div>
+        </div>
+        <h2 (click)="onSubmit()" class="signin-h2">Submit</h2>
+    </main>
+</div>

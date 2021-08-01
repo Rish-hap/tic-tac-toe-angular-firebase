@@ -1,2 +1,7 @@
-<h1>Choose Name</h1>
-<input type="string" [ngModel]="value" (ngModelChange)="valueChange($event)"  class="input-name" />
+<div *ngIf="version; else elseBlock">
+    <input type="string" [ngModel]="value" [placeholder]="placeholder" (ngModelChange)="valueChange($event)" class="input-name" />
+</div>
+<ng-template #elseBlock>
+    <h1>Choose Name</h1>
+    <input type="string" [ngModel]="value"  (ngModelChange)="valueChange($event)" class="input-name" />
+</ng-template>

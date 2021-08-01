@@ -10,36 +10,53 @@ import { Router } from '@angular/router';
 })
 export class ChoosePlayerComponent implements OnInit {
   avatars: { src: string, id: number, name: string, selected: boolean, player: string }[] = []
-  playerInfo: any
+  playerInfo: any = {
+    1: {
+      name: '',
+      avatar: ''
+    },
+    2: {
+      name: '',
+      avatar: ''
+    }
+  }
 
   constructor(private router: Router, private avatarsService: AvatarsServiceService, private playerInfoService: PlayerInfoService) {
     this.avatarsService.getAvatars()
       .subscribe(val => {
-        this.avatars = [...val.data]
-        let players = this.avatars.filter((item: any) => item.selected)
-        let info = {
-          1: {
-            name: '',
-            avatar: ''
-          },
-          2: {
-            name: '',
-            avatar: ''
+        console.log(val, "Inside subscribe of chooose_player")
+        try {
+          this.avatars = [...val.data]
+          let players = this.avatars.filter((item: any) => item.selected)
+          let player = localStorage.getItem('player')
+          let info = {
+            1: {
+              name: player ? player : '',
+              avatar: ''
+            },
+            2: {
+              name: '',
+              avatar: ''
+            }
           }
+          players.forEach((element: any) => {
+            if (element.player === '1') {
+              info[1].avatar = element.src
+            } else if (element.player === '2') {
+              info[2].avatar = element.src
+            }
+          })
+          this.playerInfoService.set_player_info({ ...info })
+          this.playerInfo = { ...info }
+        } catch (error) {
+            console.log(error,"error choose-player-component")
         }
-        players.forEach((element: any) => {
-          if (element.player === '1') {
-            info[1].avatar = element.src
-          } else if (element.player === '2') {
-            info[2].avatar = element.src
-          }
-        })
-        this.playerInfoService.set_player_info({ ...info })
-        this.playerInfo = { ...info }
       })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+  }
 
   changePlayerInfo = (value: string, player: number, src: string): void => {
     let info = this.playerInfo

@@ -12,9 +12,6 @@ import { HeaderComponent } from './header/header.component';
 import { ChoosePlayerComponent } from './choose-player/choose-player.component';
 import { ImagePipePipe } from './pipes/image-pipe.pipe';
 import { PlayerComponent } from './player/player.component';
-// import { AngularFireModule } from '@angular/fire';
-// import { AngularFireDatabaseModule } from '@angular/fire/database';
-// import { environment } from '../environments/environment';
 import { AvatarStatsComponent } from './avatar-stats/avatar-stats.component';
 import { InputComponent } from './input/input.component';
 import { GamesTableComponent } from './components/Table/games-table/games-table.component';
@@ -47,7 +44,7 @@ AppModule = __decorate([
         imports: [
             FormsModule,
             BrowserModule,
-            AppRoutingModule,
+            AppRoutingModule
         ],
         providers: [],
         bootstrap: [AppComponent]

@@ -20,7 +20,7 @@ export class GamesInfoService {
           (async () => {
             let data = await axios.get(`${url}/games/allGames`, {
               headers: {
-                auth_header: 'no'
+                'x-access-token': localStorage.getItem('token')
               }
             })
               .then((res) => {
@@ -50,6 +50,10 @@ export class GamesInfoService {
     try {
       data = await axios.post(`${url}/games/addGame`, {
         games: games
+      }, {
+        headers: {
+          'x-access-token': localStorage.getItem('token')
+        }
       })
         .then((res) => {
           return res.data;

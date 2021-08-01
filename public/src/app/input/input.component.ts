@@ -8,9 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InputComponent implements OnInit {
   @Input() changePlayerInfo: any
   @Input() player: any
-  value: string = ''
+  @Input() placeholder: string = ''
+  @Input() version: boolean = false
+  @Input() type: string = ''
+  @Input() value: string = ''
   valueChange(value: any) {
-    this.changePlayerInfo(value, this.player)
+    this.changePlayerInfo(value, this.player ? this.player : this.type)
   }
   constructor() { }
 

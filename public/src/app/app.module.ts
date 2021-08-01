@@ -21,6 +21,7 @@ import { TableHeaderComponent } from './components/Table/table-header/table-head
 import { TableRowComponent } from './components/Table/table-row/table-row.component';
 import { DatePipePipe } from './pipes/date-pipe.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { SigninComponent } from './components/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     TableHeaderComponent,
     TableRowComponent,
     DatePipePipe,
-    PaginationComponent
+    PaginationComponent,
+    SigninComponent
   ],
   imports: [
     FormsModule,

@@ -1,21 +1,35 @@
 import { __decorate } from "tslib";
 import { Component } from '@angular/core';
 let GamesTableComponent = class GamesTableComponent {
-    constructor(gamesInfoService) {
+    constructor(gamesInfoService, searchClient) {
         this.gamesInfoService = gamesInfoService;
+        this.searchClient = searchClient;
         this.gamesInfo = [];
         this.paginated_data = [];
         this.params = {
             total: 0,
             active: 1,
             pages: 0,
-            limit: 6
+            limit: 1
         };
         this.gamesInfoService.get_games_info(Object.assign({}, this.params))
             .subscribe(val => {
             this.gamesInfo = [...val.data];
         });
         this.paginate_data = this.paginate_data.bind(this);
+        this.search_callback = this.search_callback.bind(this);
+    }
+    search_callback(info) {
+        this.searchClient.search(Object.assign({}, info)).subscribe(result => {
+            console.log(result, "val in search_callback");
+            if (result.success) {
+                // this.paginated_data =  result.data
+                this.gamesInfo = result.data;
+            }
+            else {
+                window.alert(result.message);
+            }
+        });
     }
     paginate_data(info) {
         console.log(info, "info in paginate_data");

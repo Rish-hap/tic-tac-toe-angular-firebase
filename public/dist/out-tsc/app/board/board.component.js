@@ -30,12 +30,17 @@ let BoardComponent = class BoardComponent {
         this.xIsNext = true;
         this.coinFlip = false;
         this.winner = 'X';
+        this.moves = 0;
         this.timing = { start: null, end: null };
         this.playerInfo = {
-            1: { name: '',
-                avatar: '' },
-            2: { name: '',
-                avatar: '' }
+            1: {
+                name: '',
+                avatar: ''
+            },
+            2: {
+                name: '',
+                avatar: ''
+            }
         };
         this.gameInfo = {
             player1: {
@@ -50,7 +55,7 @@ let BoardComponent = class BoardComponent {
                 moves: 0,
                 time: 0
             },
-            T: 0,
+            Time: 0,
             won: '',
             _id: ''
         };
@@ -128,6 +133,7 @@ let BoardComponent = class BoardComponent {
         this.xIsNext = true;
         this.coinFlip = false;
         this.timing = { start: null, end: null };
+        this.moves = 0;
         this.gameInfo = {
             player1: {
                 name: '',
@@ -141,7 +147,7 @@ let BoardComponent = class BoardComponent {
                 moves: 0,
                 time: 0
             },
-            T: 0,
+            Time: 0,
             won: '',
             _id: ''
         };
@@ -151,29 +157,33 @@ let BoardComponent = class BoardComponent {
     }
     // @confirmMove("Are you sure about this move?")
     makeMove(idx) {
-        if (!this.squares[idx] && !this.winner && this.coinFlip) {
+        console.log(this.moves, "polo");
+        if (!this.squares[idx] && !this.winner && this.coinFlip && this.moves !== 9) {
             this.squares.splice(idx, 1, this.player);
             this.squares = [...this.squares];
             this.xIsNext = !this.xIsNext;
+            this.moves++;
             this.winner = this.calculateWinner();
         }
     }
     update_avatars_stats(winner) {
-        let player_won = winner === 'O' ? this.player1 : this.player2;
-        let player_loss = winner === 'O' ? this.player2 : this.player1;
-        let arr = [...this.avatars];
-        let updated_avatars = arr.map((item, i) => {
-            if (item.src === player_won) {
-                return Object.assign(Object.assign({}, item), { wins: item.wins + 1 });
-            }
-            else if (item.src === player_loss) {
-                return Object.assign(Object.assign({}, item), { loss: item.loss + 1 });
-            }
-            else {
-                return item;
-            }
-        });
-        this.avatarsService.setAvatars([...updated_avatars]);
+        if (winner !== "None") {
+            let player_won = winner === 'O' ? this.player1 : this.player2;
+            let player_loss = winner === 'O' ? this.player2 : this.player1;
+            let arr = [...this.avatars];
+            let updated_avatars = arr.map((item, i) => {
+                if (item.src === player_won) {
+                    return Object.assign(Object.assign({}, item), { wins: item.wins + 1 });
+                }
+                else if (item.src === player_loss) {
+                    return Object.assign(Object.assign({}, item), { loss: item.loss + 1 });
+                }
+                else {
+                    return item;
+                }
+            });
+            this.avatarsService.setAvatars([...updated_avatars]);
+        }
     }
     calculateWinner() {
         const lines = [
@@ -187,13 +197,15 @@ let BoardComponent = class BoardComponent {
             [2, 4, 6]
         ];
         this.update_game_info();
+        console.log(this.moves, "moves");
         for (let i = 0; i < lines.length; i++) {
             const [a, b, c] = lines[i];
-            if (this.squares[a] && this.squares[a] === this.squares[b] && this.squares[a] === this.squares[c]) {
+            let result = (this.squares[a] && this.squares[a] === this.squares[b] && this.squares[a] === this.squares[c]);
+            if (result || (this.moves === 9)) {
                 this.timing.end = new Date();
-                this.update_avatars_stats(this.squares[a]);
-                this.gamesInfoService.setGamesInfo(Object.assign(Object.assign({}, this.gameInfo), { T: new Date(), _id: '', won: !this.xIsNext ? 'player1' : 'player2' }));
-                return this.squares[a];
+                this.update_avatars_stats(result ? this.squares[a] : 'None');
+                this.gamesInfoService.setGamesInfo(Object.assign(Object.assign({}, this.gameInfo), { Time: (new Date()).toString(), _id: '', won: result ? !this.xIsNext ? 'player1' : 'player2' : "None" }));
+                return result ? this.squares[a] : false;
             }
         }
         return false;

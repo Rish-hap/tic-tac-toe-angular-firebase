@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AxiosClient } from '../axios-client'
 
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 
 import { url } from "../utils/url"
+
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvatarsServiceService {
-
-  constructor() { }
+  constructor(private router:Router, private service:AxiosClient) { 
+      
+  }
   avatars: { src: string, id: number, name: string, selected: boolean, player: string, wins: number, loss: number }[] = []
 
   getAvatars(someData?: any): Observable<any> {
@@ -20,7 +24,7 @@ export class AvatarsServiceService {
           (async () => {
             let data = await axios.get(`${url}/avatars/allAvatars`, {
               headers: {
-                auth_header: 'no'
+                'x-access-token': localStorage.getItem('token')
               }
             })
               .then((res) => {
@@ -29,7 +33,7 @@ export class AvatarsServiceService {
               .catch((err) => {
                 return {
                   success: false,
-                  message: "Unable to fetch avatars"
+                  message: err.message || "Unable to fetch avatars"
                 }
               })
             observer.next(data)
@@ -54,7 +58,7 @@ export class AvatarsServiceService {
     try {
       data = await axios.get(`${url}/avatars/allAvatars`, {
         headers: {
-          auth_header: 'no'
+          'x-access-token': localStorage.getItem('token')
         }
       })
         .then((res) => {
@@ -87,18 +91,10 @@ export class AvatarsServiceService {
   async set_avatars_to_backend(avatars: any) {
     let data: any = {}
     try {
-      data = await axios.post(`${url}/avatars/update`, {
+      data = await this.service.post(`${url}/avatars/update`, {
         avatars: [...avatars]
-      })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => {
-          return {
-            success: false,
-            message: "Unable to fetch avatars"
-          }
-        });
+      }, (response: AxiosResponse) => response.data)
+
     } catch (error) {
       data = {
         success: false,

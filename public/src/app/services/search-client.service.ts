@@ -15,7 +15,7 @@ export class SearchClientService {
       (async () => {
         let items = await axios.get(`${url}/games/search?player1=${data.player1}&player2=${data.player2}&avatar1=${data.avatar1}&avatar2=${data.avatar2}`, {
           headers: {
-            auth_header: 'no'
+            'x-access-token': localStorage.getItem('token')
           }
         })
           .then((res) => {

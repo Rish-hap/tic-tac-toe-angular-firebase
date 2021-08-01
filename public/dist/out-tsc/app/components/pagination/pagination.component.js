@@ -6,8 +6,8 @@ let PaginationComponent = class PaginationComponent {
         this.params = {
             total: 0,
             active: 1,
-            pages: 0,
-            limit: 6
+            pages: 1,
+            limit: 4
         };
     }
     ngOnChanges(changes) {

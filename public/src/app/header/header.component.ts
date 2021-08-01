@@ -15,8 +15,11 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private avatarsService: AvatarsServiceService, private playerInfoService: PlayerInfoService) {
     this.avatarsService.getAvatars()
       .subscribe(val => {
-        this.avatars = [...val.data]
-        this.avatarsService.setAvatars([...val.data])
+        console.log(val, "val in header subscribe method")
+        if (val.success) {
+          this.avatars = [...val.data]
+          this.avatarsService.setAvatars([...val.data])
+        }
       })
     this.playerInfo = this.playerInfoService.get_player_info()
   }

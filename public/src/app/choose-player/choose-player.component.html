@@ -2,7 +2,7 @@
     <div id="1">
         <h1 class="heading-h1">Player 1</h1>
         <div class="app-input-wrap">
-            <app-input [player]="1" [changePlayerInfo]="changePlayerInfo" class="choose-input"></app-input>
+            <app-input [player]="1" [value]="this.playerInfo[1].name" [changePlayerInfo]="changePlayerInfo" class="choose-input"></app-input>
         </div>
         <h1>Avatar</h1>
         <div class="choose-player-wrapper">
@@ -23,7 +23,7 @@
     <div id="some-id" class="u-margin-left-40">
         <h1 class="heading-h1">Player 2</h1>
         <div class="app-input-wrap">
-            <app-input [player]="2" [changePlayerInfo]="changePlayerInfo" class="choose-input"></app-input>
+            <app-input [player]="2" [value]="this.playerInfo[2].name"  [changePlayerInfo]="changePlayerInfo" class="choose-input"></app-input>
         </div>
         <h1>Avatar</h1>
         <div class="choose-player-wrapper ">

@@ -5,7 +5,7 @@ const firebase_creds = {
   projectId: "diablo2343",
   storageBucket: "diablo2343.appspot.com",
   messagingSenderId: "1090289986401",
-  appId: "1:1090289986401:web:8d79e1b12ff0329b6c7320"
+  appId: "1:1090289986401:web:7408b5f9741782376c7320"
 }
 
 export {

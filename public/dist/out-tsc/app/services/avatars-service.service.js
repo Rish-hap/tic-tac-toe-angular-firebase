@@ -2,6 +2,7 @@ import { __decorate } from "tslib";
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import axios from "axios";
+import { url } from "../utils/url";
 let AvatarsServiceService = class AvatarsServiceService {
     constructor() {
         this.avatars = [];
@@ -10,9 +11,11 @@ let AvatarsServiceService = class AvatarsServiceService {
         return new Observable((observer) => {
             if (this.avatars.length === 0) {
                 (async () => {
-                    let data = await axios.get(`http://localhost:5001/diablo2343/us-central1/v1/v1/avatars/allAvatars`, { headers: {
+                    let data = await axios.get(`${url}/avatars/allAvatars`, {
+                        headers: {
                             auth_header: 'no'
-                        } })
+                        }
+                    })
                         .then((res) => {
                         return res.data;
                     })
@@ -42,9 +45,11 @@ let AvatarsServiceService = class AvatarsServiceService {
     async get_avatars_from_backend() {
         let data = {};
         try {
-            data = await axios.get(`http://localhost:5001/diablo2343/us-central1/v1/v1/avatars/allAvatars`, { headers: {
+            data = await axios.get(`${url}/avatars/allAvatars`, {
+                headers: {
                     auth_header: 'no'
-                } })
+                }
+            })
                 .then((res) => {
                 return res.data;
             })
@@ -74,7 +79,7 @@ let AvatarsServiceService = class AvatarsServiceService {
     async set_avatars_to_backend(avatars) {
         let data = {};
         try {
-            data = await axios.post(`http://localhost:5001/diablo2343/us-central1/v1/v1/avatars/update`, {
+            data = await axios.post(`${url}/avatars/update`, {
                 avatars: [...avatars]
             })
                 .then((res) => {

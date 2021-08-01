@@ -12,15 +12,16 @@ const validate = (schema: any) => (req: any, res: any, next: any) => {
     .prefs({ errors: { label: 'key' } })
     .validate(object)
 
+  console.log(error, value)
+
   if (error) {
-
     const errorMessage = error.details.map((details) => details.message).join(', ');
-
+    console.log(errorMessage,"error message")
     return next(new ApiError(httpStatus.BAD_REQUEST, errorMessage))
   }
 
-  Object.assign(req, value);
-  return next();
+  Object.assign(req, value)
+  return next()
 }
 
 module.exports = validate;
